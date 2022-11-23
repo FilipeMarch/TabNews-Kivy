@@ -18,6 +18,9 @@ if platform != "android":
 class TabNewsApp(BaseApp, MDApp):
     should_send_app_to_phone = False
 
+    relevantes_selected = F.BooleanProperty(True)
+    recentes_selected = F.BooleanProperty(False)
+
     def __init__(self, nursery):
         super().__init__()
         self.nursery = nursery
