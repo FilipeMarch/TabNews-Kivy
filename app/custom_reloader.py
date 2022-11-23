@@ -8,6 +8,28 @@ import os
 
 kv = Builder.load_string(
     """
+#:set red (1,0,0,1)
+#:set green (0,1,0,1)
+#:set blue (0,0,1,1)
+#:set yellow (1,1,0,1)
+#:set orange (1,0.5,0,1)
+#:set purple (1,0,1,1)
+#:set white (1,1,1,1)
+#:set black (0,0,0,1)
+#:set gray (0.5,0.5,0.5,1)
+#:set light_gray (0.8,0.8,0.8,1)
+#:set dark_gray (0.2,0.2,0.2,1)
+#:set transparent (0,0,0,0)
+
+<Widget>:
+    bgg_color: (1,1,1,0)
+    canvas.before:
+        Color:
+            rgba: root.bgg_color or (1,1,1,0)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
 <RootScreen>:
     screen_manager: screen_manager.__self__
     server_layout: server_layout.__self__
