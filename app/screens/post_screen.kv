@@ -1,0 +1,113 @@
+<PostScreen>:
+    name: 'Post Screen'
+    BoxLayout:
+        opacity: 1 if not root.screen_loaded else 0
+        opacity: 0
+        Label:
+            text: 'Loading screen...'
+            color: 0,0,0,1
+            font_size: sp(21)
+    
+    ScrollView:
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 0, dp(60 + 20), 0, 0
+            size_hint_y: None
+            height: self.minimum_height
+            #bgg_color: purple
+            BoxLayout:
+                size_hint_y: None
+                height: dp(40) + title.texture_size[1] + body.texture_size[1] 
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: None
+                    width: dp(42)
+                    # #bgg_color: red
+                    padding: 0, dp(17), 0, 0
+                    RectangleIconButton:
+                        size_hint: None, None
+                        size: "24dp", "24dp"
+                        text_size: None, None
+                        font_size: '24dp'
+                        icon: 'chevron-up'
+                        on_release: root.edit_coffee_field()
+                        pos_hint: {'center_x': 0.5}
+                    Label:
+                        markup: True
+                        text: f"[b]{root.tabcoins}"
+                        color: 46/255, 100/255, 204/255, 1
+                        size_hint_y: None
+                        height: dp(36)
+                        font_size: sp(12)
+                    RectangleIconButton:
+                        size_hint: None, None
+                        size: "24dp", "24dp"
+                        text_size: None, None
+                        font_size: '24dp'
+                        icon: 'chevron-down'
+                        on_release: root.edit_coffee_field()
+                        pos_hint: {'center_x': 0.5}
+                    MDSeparator:
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5}
+                    
+                BoxLayout:
+                    orientation: 'vertical'
+                    #bgg_color: red
+                    size_hint_y: None
+                    height: dp(40) + title.texture_size[1] + body.texture_size[1]
+                    # height: dp(1000)
+                    BoxLayout:
+                        size_hint_y: None
+                        height: dp(30)
+                        #bgg_color: green
+                        Label:
+                            markup: True
+                            text: root.author
+                            color: 59/255,113/255,214/255,1
+                            size_hint_x: None
+                            width: self.texture_size[0] + dp(20)
+                            font_size: sp(13)
+                            canvas.before:
+                                Color:
+                                    rgba: 225/255, 243/255, 254/255, 1
+                                RoundedRectangle:
+                                    pos: self.pos
+                                    size: self.size
+                                    radius: [dp(10),]
+
+                        Label:
+                            text: root.date
+                            color: 121/255, 121/255, 121/255, 1
+                            font_size: sp(12)
+                            size_hint_x: None
+                            width: self.texture_size[0] + dp(20)
+                    MDLabel:
+                        id: title
+                        markup: True
+                        text: f"[b]{root.title}"
+                        # #bgg_color: red
+                        halign: 'left'
+                        valign: 'top'
+                        font_style: 'H4'
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    Label:
+                        id: body
+                        text: root.body
+                        color: 38/255, 41/255, 46/255, 1
+                        size_hint_x: None
+                        width: root.width - dp(42 + 20 + 20)
+                        font_size: sp(15)
+                        halign: 'left'
+                        text_size: self.width, None
+
+
+                    # Widget:
+                
+
+            Widget:
+                size_hint_y: None
+                height: dp(20)
+                #bgg_color: blue
