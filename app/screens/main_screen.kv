@@ -8,76 +8,18 @@
             font_size: sp(21)
     BoxLayout:
         orientation: 'vertical'
-        BoxLayout:
-            bgg_color: 37/255, 41/255, 46/255, 1
-            size_hint_y: None
-            height: dp(60)
-            Spacing:
-            Image:
-                source: 'data/images/tabnews.png'
-                size_hint: None, None
-                size: dp(25), dp(25)
-                pos_hint: {'center_y': .5}
-            Widget:
-            ClickableLabel:
-                markup: True
-                text: '[b]Relevantes'
-                size_hint: None, None
-                width: self.texture_size[0] + dp(10)
-                height: self.texture_size[1] + dp(5)
-                pos_hint: {'center_y': .5}
-                on_release: 
-                    root.relevantes_selected = True
-                    root.recentes_selected = False
-                canvas.before:
-                    Color:
-                        rgba: (1,1,1,1) if root.relevantes_selected else (0,0,0,0)
-                    Line:
-                        width: dp(.777)
-                        points: self.x + dp(5), self.y, self.x + self.width - dp(5), self.y
-            ClickableLabel:
-                markup: True
-                text: '[b]Recentes'
-                size_hint: None, None
-                width: self.texture_size[0] + dp(10)
-                height: self.texture_size[1] + dp(5)
-                pos_hint: {'center_y': .5}
-                on_release: 
-                    root.relevantes_selected = False
-                    root.recentes_selected = True
-                canvas.before:
-                    Color:
-                        rgba: (1,1,1,1) if root.recentes_selected else (0,0,0,0)
-                    Line:
-                        width: dp(.777)
-                        points: self.x + dp(5), self.y, self.x + self.width - dp(5), self.y
-            Widget:
-            Label:
-                markup: True
-                text: '[b]Login'
-                size_hint_x: None
-                width: self.texture_size[0] + dp(10)
-            Label:
-                markup: True
-                text: '[b]Cadastrar'
-                size_hint_x: None
-                width: self.texture_size[0] + dp(10)
-            Widget:
-        Spacing:
+        padding: 0, dp(60), 0, 0
         RecycleView:
             viewclass: 'Post'
             data: root.data
             RecycleBoxLayout:
                 id: box
-                # default_size: None, dp(56)
                 default_size_hint: 1, None
                 size_hint_y: None
                 height: self.minimum_height
                 orientation: 'vertical'
                 spacing: dp(10)
-        # Widget:
-        #     bgg_color: red
-        # Button:
+                padding: 0, dp(10), 0, 0
 
 <ClickableLabel@ButtonBehavior+Label>:
     
