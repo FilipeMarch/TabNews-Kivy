@@ -30,6 +30,8 @@ kv = Builder.load_string(
             size: self.size
             pos: self.pos
 
+
+
 <RootScreen>:
     screen_manager: screen_manager.__self__
     server_layout: server_layout.__self__
@@ -62,6 +64,69 @@ kv = Builder.load_string(
             size: dp(50), dp(50)
             on_release: root.change_opacity(server_layout)
         Widget:
+
+    FloatLayout:
+        BoxLayout:
+            pos_hint: {"top": 1}
+            bgg_color: 37/255, 41/255, 46/255, 1
+            size_hint_y: None
+            height: dp(60)
+            Spacing:
+            Image:
+                source: 'data/images/tabnews.png'
+                size_hint: None, None
+                size: dp(25), dp(25)
+                pos_hint: {'center_y': .5}
+            Widget:
+            ClickableLabel:
+                markup: True
+                text: '[b]Relevantes'
+                size_hint: None, None
+                width: self.texture_size[0] + dp(10)
+                height: self.texture_size[1] + dp(5)
+                pos_hint: {'center_y': .5}
+                on_release: 
+                    print('Clicked relevantes')
+                    app.relevantes_selected = True
+                    app.recentes_selected = False
+                    app.screen_manager.get_screen("Main Screen").data = []
+                    app.screen_manager.get_screen("Main Screen").screen_loaded = False
+                    app.screen_manager.get_screen("Main Screen").load_main_screen_data()
+                    if app.screen_manager.current != "Main Screen": app.change_screen("Main Screen")
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1) if app.relevantes_selected else (0,0,0,0)
+                    Line:
+                        width: dp(.777)
+                        points: self.x + dp(5), self.y, self.x + self.width - dp(5), self.y
+            ClickableLabel:
+                markup: True
+                text: '[b]Recentes'
+                size_hint: None, None
+                width: self.texture_size[0] + dp(10)
+                height: self.texture_size[1] + dp(5)
+                pos_hint: {'center_y': .5}
+                on_release: 
+                    app.relevantes_selected = False
+                    app.recentes_selected = True
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1) if app.recentes_selected else (0,0,0,0)
+                    Line:
+                        width: dp(.777)
+                        points: self.x + dp(5), self.y, self.x + self.width - dp(5), self.y
+            Widget:
+            Label:
+                markup: True
+                text: '[b]Login'
+                size_hint_x: None
+                width: self.texture_size[0] + dp(10)
+            Label:
+                markup: True
+                text: '[b]Cadastrar'
+                size_hint_x: None
+                width: self.texture_size[0] + dp(10)
+            Widget:
             
 """
 )
