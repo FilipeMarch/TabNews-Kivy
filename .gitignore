@@ -1,2 +1,3 @@
 __pycache__
 .venv
+app/configs/last_port_used
