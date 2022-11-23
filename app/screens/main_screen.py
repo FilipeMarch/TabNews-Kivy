@@ -19,12 +19,18 @@ class Post(F.BoxLayout):
     post_number_of_comments = F.NumericProperty()
     post_author = F.StringProperty()
     post_date = F.StringProperty()
+    post_slug = F.StringProperty()
 
     def open_post(self):
         ic("Opening post")
         self.title.text = f"[u][ref=[b]{self.post_title}"
 
         # Change to post screen and update the text again to remove [u]
+        app = App.get_running_app()
+        app.change_screen("Post Screen")
+        post_screen = app.screen_manager.get_screen("Post Screen")
+        post_screen.slug = self.post_slug
+        post_screen.author = self.post_author
 
 
 class MainScreen(F.Screen):
@@ -32,14 +38,14 @@ class MainScreen(F.Screen):
     screen_loaded = F.BooleanProperty(False)
     data = F.ListProperty()
 
-    relevantes_selected = F.BooleanProperty(True)
-    recentes_selected = F.BooleanProperty(False)
-
     def on_enter(self):
         print("Entered main screen")
-        self.app.nursery.start_soon(self.load_screen_data)
+        self.load_main_screen_data()
 
-    async def load_screen_data(self):
+    def load_main_screen_data(self):
+        self.app.nursery.start_soon(self.request_posts)
+
+    async def request_posts(self):
         """
         Get the content from tabnews.com.br and load it into the screen
         """
@@ -63,5 +69,6 @@ class MainScreen(F.Screen):
                         "post_number_of_comments": item["children_deep_count"],
                         "post_author": item["owner_username"],
                         "post_date": item["created_at"][:10],
+                        "post_slug": item["slug"],
                     }
                 )
