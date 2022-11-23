@@ -13,6 +13,7 @@ kivy = "^2.1.0"
 buildozer = {url = "https://github.com/kivy/buildozer/archive/master.zip"}
 kivymd = {url = "https://github.com/kivymd/KivyMD/archive/master.zip"}
 pydantic = "^1.10.2"
+asks = "^3.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -23,6 +24,7 @@ black = "^22.10.0"
 plyer = "^2.1.0"
 psutil = "^5.9.4"
 pytest = "^7.2.0"
+faker = "^15.3.3"
 
 [build-system]
 requires = ["poetry-core"]
