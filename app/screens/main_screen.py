@@ -22,7 +22,7 @@ class Post(F.BoxLayout):
 
     def open_post(self):
         ic("Opening post")
-        self.text = f"[u][ref=[b]{self.post_title}]"
+        self.title.text = f"[u][ref=[b]{self.post_title}"
 
         # Change to post screen and update the text again to remove [u]
 
