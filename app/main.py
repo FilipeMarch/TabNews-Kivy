@@ -2,6 +2,7 @@ from kivy.lang import Builder
 from kivy.utils import platform
 from kivy.factory import Factory as F
 from custom_reloader import RootScreen, BaseApp, App
+from kivymd.app import MDApp
 import trio
 import os
 
@@ -9,11 +10,12 @@ import os
 if platform != "android":
     from kivy.core.window import Window
 
-    Window.size = (1312 * 0.306777, 2460 * 0.306777)
+    Window.size = (375, 667)
+    # Window.size = (1312 * 0.306777, 2460 * 0.306777)
     Window._set_window_pos(1040, 100)
 
 
-class TabNewsApp(BaseApp):
+class TabNewsApp(BaseApp, MDApp):
     should_send_app_to_phone = False
 
     def __init__(self, nursery):
