@@ -3,7 +3,9 @@
 # tabnews.com.br feito em Python!
 O objetivo desse projeto é se divertir bastante com o desafio de criar um cliente profissional do `tabnews.com.br` usando apenas Python! 😎
 
-https://user-images.githubusercontent.com/23220309/203554821-a53e61dd-a0cf-4f32-9fb7-14f2031bd6e2.mov
+
+https://user-images.githubusercontent.com/23220309/206291709-b29621c3-bb0d-49cf-9ee8-40ad8ae88baf.mp4
+
 
 Vamos juntar nossas forças e mostrar que com o Python podemos fazer aplicações completas e de alta performance para todas as plataformas: Android, iOS, Linux, Windows e macOS! 🖥️📱
 
@@ -20,7 +22,7 @@ Usando a framework multi-plataforma **Kivy** 🥝, vamos rapidamente replicar o 
 
 - Fortalecer o `tabnews.com.br` com diversos tutoriais, ensinando nossos irmãos tudo o que aprendermos nesse desafio! 
 - Fortalecer as amizades entre nós desenvolvedores, mostrando que a cooperação e a ajuda mútua é a chave do nosso sucesso! 
-- Fortalecer e popularizar a comunidade **Kivy** no Brasil, uma framework que tem potencial pra criar todo tipo de aplicação, e que é feita na linguagem mais amigável de todos os tempos! 🐍
+- Fortalecer e popularizar a comunidade **Kivy** no Brasil, uma framework que tem potencial pra criar todo tipo de aplicação, e que é feita em uma das linguagens mais amigáveis de todos os tempos! 🐍
 - Contribuir com o desenvolvimento do **Kivy** e do **TabNews**.
 
 # Passo a passo para participar dessa jornada:
