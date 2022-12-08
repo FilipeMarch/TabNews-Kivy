@@ -5,7 +5,9 @@ from kivy.utils import platform
 from kivy.clock import Clock
 
 # from icecream import ic
+import certifi
 import asks
+import ssl
 import os
 
 kv_path = os.path.join(os.getcwd(), "screens", "main_screen.kv")
@@ -54,11 +56,15 @@ class MainScreen(F.Screen):
         url = "https://tabnews.com.br/"
         route = "api/v1/contents"
 
-        session = asks.Session()
-
-        response = await session.get(url + route)
-
-        # ic(response.json()[0])
+        try:
+            session = asks.Session(
+                ssl_context=ssl.create_default_context(cafile=certifi.where())
+            )
+            response = await session.get(url + route)
+            print(response)
+        except Exception as e:
+            print(e)
+            return
 
         if response.status_code == 200:
             self.screen_loaded = True
@@ -75,3 +81,5 @@ class MainScreen(F.Screen):
                         "post_slug": item["slug"],
                     }
                 )
+
+        # ic(response.json()[0])
