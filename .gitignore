@@ -2,3 +2,4 @@ __pycache__
 .venv
 app/configs/last_port_used
 .DS_Store
+app/.buildozer
