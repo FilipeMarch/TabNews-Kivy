@@ -3,7 +3,8 @@ from kivy.lang import Builder
 from kivy.factory import Factory as F
 from kivy.utils import platform
 from kivy.clock import Clock
-from icecream import ic
+
+# from icecream import ic
 import asks
 import os
 
@@ -22,7 +23,7 @@ class Post(F.BoxLayout):
     post_slug = F.StringProperty()
 
     def open_post(self):
-        ic("Opening post")
+        # ic("Opening post")
         self.title.text = f"[u][ref=[b]{self.post_title}"
 
         # Change to post screen and update the text again to remove [u]
@@ -40,6 +41,7 @@ class MainScreen(F.Screen):
 
     def on_enter(self):
         print("Entered main screen")
+
         self.load_main_screen_data()
 
     def load_main_screen_data(self):
@@ -60,6 +62,7 @@ class MainScreen(F.Screen):
 
         if response.status_code == 200:
             self.screen_loaded = True
+            self.data = []
             for index, item in enumerate(response.json(), start=1):
                 self.data.append(
                     {
