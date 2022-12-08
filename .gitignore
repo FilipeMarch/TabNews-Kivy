@@ -3,3 +3,6 @@ __pycache__
 app/configs/last_port_used
 .DS_Store
 app/.buildozer
+app/temp
+app_copy.zip
+app/bin
