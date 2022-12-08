@@ -2,12 +2,14 @@ from shutil import copytree, ignore_patterns, rmtree
 from kivy.utils import platform
 from kivy.lang import Builder
 from kivy.factory import Factory as F
+
 import subprocess
+import shutil
+import trio
 import os
 
-
-kv = Builder.load_string(
-    """
+# fmt: off
+kv = Builder.load_string("""
 #:set red (1,0,0,1)
 #:set green (0,1,0,1)
 #:set blue (0,0,1,1)
@@ -23,14 +25,18 @@ kv = Builder.load_string(
 
 <Widget>:
     bgg_color: (1,1,1,0)
-    canvas.before:
-        Color:
-            rgba: root.bgg_color or (1,1,1,0)
-        Rectangle:
-            size: self.size
-            pos: self.pos
+    # canvas.before:
+    #     Color:
+    #         rgba: root.bgg_color or (1,1,1,0)
+    #     Rectangle:
+    #         size: self.size
+    #         pos: self.pos
 
+<Spacing@Widget>:
+    size_hint: None, None
+    size: dp(10), dp(10)
 
+<ClickableLabel@ButtonBehavior+Label>:
 
 <RootScreen>:
     screen_manager: screen_manager.__self__
@@ -41,12 +47,12 @@ kv = Builder.load_string(
 
     FloatLayout:
         id: server_layout
-        opacity: 0
+        opacity: 1
         Label:
             text: root.port_selected
             font_size: sp(18)
             pos: server_icon.right+dp(10),0
-            color: 1,1,1,1
+            color: 37/255, 41/255, 46/255, 1
             size_hint: 1, None
             height: self.texture_size[1]
         
@@ -54,7 +60,7 @@ kv = Builder.load_string(
             text: root.ip_selected
             font_size: sp(18)
             pos: server_icon.right+dp(10),server_icon.top
-            color: 1,1,1,1
+            color: 37/255, 41/255, 46/255, 1
             size_hint: 1, None
             height: self.texture_size[1]
         
@@ -68,9 +74,14 @@ kv = Builder.load_string(
     FloatLayout:
         BoxLayout:
             pos_hint: {"top": 1}
-            bgg_color: 37/255, 41/255, 46/255, 1
             size_hint_y: None
             height: dp(60)
+            canvas.before:
+                Color:
+                    rgba: 37/255, 41/255, 46/255, 1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
             Spacing:
             Image:
                 source: 'data/images/tabnews.png'
@@ -121,15 +132,18 @@ kv = Builder.load_string(
                 text: '[b]Login'
                 size_hint_x: None
                 width: self.texture_size[0] + dp(10)
+                
             Label:
                 markup: True
                 text: '[b]Cadastrar'
                 size_hint_x: None
                 width: self.texture_size[0] + dp(10)
+                
             Widget:
             
 """
 )
+# fmt: on
 
 
 class RootScreen(F.Screen):
@@ -184,7 +198,6 @@ class RootScreen(F.Screen):
 
     async def data_receiver(self, data_stream):
         print("Downloading updated app")
-        import shutil
 
         try:
             with open("app_copy.zip", "wb") as myzip:
