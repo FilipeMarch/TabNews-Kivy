@@ -1,3 +1,8 @@
+# from kivy.extras.highlight import KivyLexer
+#:import KivyLexer kivy.extras.highlight.KivyLexer
+# import python lexer from pygments
+#:import PythonLexer pygments.lexers.PythonLexer
+
 <PostScreen>:
     name: 'Post Screen'
     BoxLayout:
@@ -92,9 +97,19 @@
                         font_style: 'H4'
                         size_hint_y: None
                         height: self.texture_size[1] + dp(10)
+                        font_name: "data/fonts/emoji.ttf"
+
+                    # CodeInput:
+                    #     text: '''def soma(a, b): \n    print(f"a: {a}, Hello world")'''
+                    #     lexer: PythonLexer()
+                    #     readonly: True 
+                    #     style_name: "colorful"
+                    # Widget:
                     
                     Label:
+                        color: 1,1,1,1
                         id: body
+                        markup: True
                         text: root.body
                         color: 38/255, 41/255, 46/255, 1
                         size_hint_x: None
@@ -102,6 +117,9 @@
                         font_size: sp(15)
                         halign: 'left'
                         text_size: self.width, None
+                        font_name: "data/fonts/emoji.ttf"
+                        on_ref_press: root.open_link(*args)
+                        
 
 
                     # Widget:
