@@ -4,7 +4,7 @@
 title = Tab News
 
 # (str) Package name
-package.name = myapp
+package.name = tabnews
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.test
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,trio,async_generator,sortedcontainers,sniffio,certifi,idna,pygments,requests,urllib3,attrs,outcome,exceptiongroup,https://github.com/kivymd/KivyMD/archive/master.zip
+requirements = python3,pillow,kivy==master,trio,async_generator,sortedcontainers,sniffio,certifi,chardet,charset_normalizer,idna,pygments,requests,urllib3,attrs,outcome,exceptiongroup,https://github.com/kivymd/KivyMD/archive/master.zip,asks,h11,anyio,openssl
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
