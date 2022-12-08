@@ -16,10 +16,8 @@ def get_last_port_used() -> int:
 async def connect_to_server():
     try:
         with trio.move_on_after(1):
-            LOCAL_IP = "192.168.0.48"
-            client_socket = await trio.open_tcp_stream(
-                LOCAL_IP, get_last_port_used()
-            )
+            LOCAL_IP = "192.168.100.191"
+            client_socket = await trio.open_tcp_stream(LOCAL_IP, get_last_port_used())
             return client_socket
     except Exception as e:
         print(f"{red}Error: {e}")
