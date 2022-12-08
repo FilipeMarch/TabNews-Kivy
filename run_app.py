@@ -1,3 +1,3 @@
-import os
+import subprocess
 
-os.system("cd app && python main.py")
+subprocess.run(["python", "main.py"], cwd="app")
