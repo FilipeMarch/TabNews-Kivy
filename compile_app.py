@@ -3,6 +3,8 @@ from multiprocessing import Process
 from plyer import notification
 from threading import Thread
 from icecream import ic
+
+import subprocess
 import psutil
 import time
 import os
@@ -12,7 +14,16 @@ green = Fore.GREEN
 yellow = Fore.YELLOW
 init(autoreset=True)
 
-app_name = [line for line in open("buildozer.spec", 'r').readlines() if line.startswith("title")][0].split("=")[1].strip()
+app_name = (
+    [
+        line
+        for line in open("app/buildozer.spec", "r").readlines()
+        if line.startswith("title")
+    ][0]
+    .split("=")[1]
+    .strip()
+)
+
 
 class Compilation:
     @classmethod
@@ -20,11 +31,13 @@ class Compilation:
         """
         Starts the compilation process
         """
-        if option == '1':
+        if option == "1":
             print(f"{yellow} Starting compilation")
             t1 = time.time()
             cls.notify_that_compilation_started()
-            os.system("buildozer -v android debug deploy run")
+            subprocess.run(
+                ["buildozer", "-v", "android", "debug", "deploy", "run"], cwd="app"
+            )
             t2 = time.time()
             cls.notify_that_compilation_finished(t2 - t1)
             print(f"{green} Finished compilation")
@@ -65,9 +78,10 @@ class Compilation:
                 break
 
     def debug():
-        os.system("adb logcat -c")
+        print("Cleaning logs")
+        subprocess.run(["adb", "logcat", "-c"])
+        print("Starting adb logcat")
         os.system("adb logcat | grep -i 'I python'")
-
 
     def livestream():
         for proc in psutil.process_iter():
@@ -79,7 +93,7 @@ class Compilation:
                 print("error")
         else:
             # os.system("scrcpy --window-x 1200 --window-y 100 --window-width 280 --always-on-top")
-            os.system("scrcpy --always-on-top")
+            subprocess.run(["scrcpy", "--always-on-top"])
 
 
 if __name__ == "__main__":
