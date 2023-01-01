@@ -1,4 +1,4 @@
-### Anúncio oficial do projeto na terceira semana de dezembro
+### Anúncio oficial do projeto em 2023
 
 # tabnews.com.br feito em Python!
 O objetivo desse projeto é se divertir bastante com o desafio de criar um cliente profissional do `tabnews.com.br` usando apenas Python! 😎
